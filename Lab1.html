@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fantastical Favorite!</title>
+	<style>
+		label {
+			float: left;
+			clear: left;
+			margin-top:10px;
+		}
+		
+		input[type="text"] {
+			float: left;
+			margin-left: 10px;
+			margin-top: 10px;
+	    }
+		
+		input[type="button"] {
+			float: left;
+			clear: left;
+			margin_left: 100px;
+			margin-top: 10px;
+		}
+		
+		h1 {
+			float: left;
+			clear: left;
+		}
+		
+		img {
+			float: left;
+			clear: left;
+			margin-top: 10px
+		}
+		
+		p {
+			float: left;
+			clear: left;
+		}
+	</style>
+	<script>
+		function transformPage() {
+			
+			/**
+				Sets bckGrCol to the Element object representing the element whose 
+					id property matches 1fcol's value.
+				Sets the body to the color specified in bckGrCol
+			*/
+			bckGrCol = document.getElementById("1fcol").value;
+			document.body.style.backgroundColor = bckGrCol
+			
+			/**
+				Sets inputFiCol to the Element object representing the element whose 
+					id property matches 2fcol's value
+				Sets inp to the Element object representing the element whose 
+					Tag name matches "input"
+			*/
+			inputFiCol = document.getElementById("2fcol").value;
+			inp = document.getElementsByTagName("input");
+	
+			
+			/**
+				The for loop checks for each input type == to text and
+				changes the background color based on inputFiCol
+			*/
+				//My sweet child finally works
+			for (i = 0; i < inp.length; i++) {
+				if(inp[i].type == "text") {
+						inp[i].style.backgroundColor = inputFiCol;
+				}
+			}
+			
+			/**
+				Sets num to the Element object representing the element whose 
+					id property matches fnum's value.
+				prNum adds a string to num so that the .repeat numbers are seperated
+			*/
+			num = document.getElementById("fnum").value;
+			prNum = num + "  ";
+			
+			//Prints the below message into the 2nd p tag on the page
+			document.getElementsByTagName("p")[1].innerHTML = "Your favorite number, " 
+			+ num + ", printed " + num + " times: " 
+			/**
+				I dont think we talked about .repeat in class but I found it under 
+				JavaScript Reference Link/Text formatting/String object through your brightspace
+			*/
+			+ prNum.repeat(num);	
+		}
+		
+		//toggles img using an if else statement
+		function transformImage() {
+			image = document.getElementById("img1");
+			/**
+				I dont think we talked about .match in class but I found it under 
+				JavaScript Reference Link/Text formatting/String object through your brightspace
+			*/
+			if (image.src.match("Sad_cat.jpeg")) {
+				document.getElementById("img1").src ="smiling_cat.jpg";
+			}
+			else {
+				document.getElementById("img1").src ="Sad_cat.jpeg";
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Fantastical Favorites!</h1>
+	<form id="form">
+		<label for="1fcol">Enter your favorite color</label>
+		<input type ="text" id="1fcol" />
+		<label for="2fcol">Enter your next favorite color</label>
+		<input type ="text" id="2fcol" />
+		<label for="fnum">Enter your favorite number</label>
+		<input type ="text" id="fnum" />
+		
+		<input type="button" value="Done" onclick="transformPage()" />
+	</form>
+	<img id= "img1" onmouseover= "transformImage()" src="Sad_cat.jpeg" alt="Sad Cat" width="400" height="300"/>
+	<p>Hover over me to change how kitty feels!</p>
+	<p></p>
+</body>
+</html>
